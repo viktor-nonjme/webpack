@@ -25,7 +25,11 @@ export default class CardList {
     this.api
       .get(path)
       .then(cards => {
-        cards.forEach(card => {
+        let reg = /([а-яё]{6,})/gi;
+        return cards.filter(el => {
+          return el.name.match(reg) ;
+        })
+        .forEach(card => {
           this.addCard(
             card.name,
             card.link,
